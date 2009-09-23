@@ -1,0 +1,20 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|' on
+# the right side marks the last column you can put a character in.  You must make
+# exactly 11 lines for the formatting to be correct.  It's also customary to
+# leave one space after the ':'.
+
+     |-----handy-ruler------------------------------------------------------|
+tslib: tslib (Touchscreen utils and abstraction layer)
+tslib:  
+tslib: Tslib is an abstraction layer for touchscreen panel events, as well as
+tslib: a filter stack for the manipulation of those events. It was created by
+tslib: Russell King, of arm.linux.org.uk. Examples of implemented filters
+tslib: include jitter smoothing and the calibration transform.
+tslib: Tslib is generally used on embedded devices to provide a common user
+tslib: space interface to touchscreen functionality. It is supported by
+tslib: Kdrive (aka TinyX) and OPIE as well as being used on a number of
+tslib: commercial Linux devices including the Nokia 770.
+tslib: homepage: http://tslib.berlios.de/
+
