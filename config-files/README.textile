@@ -1,0 +1,35 @@
+-*- textile -*-
+
+# tosa.xmodmap
+- Keycodes
+
+|_.132          |
+|XF86AudioRecord|
+
+|_.24   |_.25   |_.26   |_.27   |_.28   |_.29   |_.30   |_.31   |_.32   |_.33        |
+|q      |w    |e    |r    |t    |y    |u    |i    |o    |p         |
+|_.38   |_.39   |_.40   |_.41   |_.42   |_.43   |_.44   |_.45   |_.46   |_.22        |
+|a      |s    |d    |f    |g    |h    |j    |k    |l    |Backspace |
+|_.50   |_.52   |_.53   |_.54   |_.55   |_.56   |_.57   |_.58   |_.59   |_.62        |
+|Shift_L|z    |x    |c    |v    |b    |n    |m    |,    |Shift_R   |
+|_.108  |_.23   |_.61   |_.     |_.65   |_.     |_.     |_.48   |_.60   |_.36        |
+|Fn     |Tab  |/    |     |space|     |     |'    |.    |enter     |
+
+|_. 101   |_.  98  |_. 130       |_. 131 |_.  93             |
+|Alt_L    |Meta_L|XF86Launch1| Menu|XF86Mail         |
+|_.  37   |      |_. 111       |     |_. 102             |
+|Control_L|      |  Up       |     |XF86KbdLightOnOff|
+|_.   9   |_. 113  |_.  99       |_. 114 |_. 100             |
+|Escape   | Left |space      |Right|KP_Enter         |
+|         |      |_. 116       |     |                 |
+|         |      | Down      |     |                 |
+
+- Find a keycode
+        xbindkeys -k
+
+- How to install
+        * cp tosa.xmodmap /etc/X11/Xmodmap
+        * echo "[ -f /etc/X11/Xmodmap ] && xmodmap /etc/X11/Xmodmap" >> /etc/X11/xinit/xinitrc
+
+# TODO
+- run as user
