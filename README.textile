@@ -1,3 +1,3 @@
-Leveraging on ArmedSlack:http://www.armedslack.org and inspired by Zubuntu:http://www.omegamoon.com/blog// here I'll try to get the almighty Slackware running on Sharp's Zaurus (SL-6000L (tosa) specifically as it's the only one I have handy).
+Leveraging on "ArmedSlack":http://www.armedslack.org and inspired by "Zubuntu":http://www.omegamoon.com/blog// here I'll try to get the almighty Slackware running on Sharp's Zaurus (SL-6000L (tosa) specifically as it's the only one I have handy).
 
 In here will be found SlackBuilds scripts to generate necessary packages, configuration files and various scripts and stuff.
