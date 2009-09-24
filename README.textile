@@ -1,3 +1,7 @@
 Leveraging on "ArmedSlack":http://www.armedslack.org and inspired by "Zubuntu":http://www.omegamoon.com/blog// here I'll try to get the almighty Slackware running on Sharp's Zaurus (SL-6000L (tosa) specifically as it's the only one I have handy).
 
 In here will be found SlackBuilds scripts to generate necessary packages, configuration files and various scripts and stuff.
+
+* Step 1
+** unpack a minimal set of packages and try to kexec-boot with a known working kernel ( angstrom 2.6.2{4,9} )
+** if it works, try to run pkgtools->setup
