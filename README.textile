@@ -8,7 +8,7 @@ h3. Armedslack-current on a Tosa, How?
 
 * mount $CARD $ROOT
 * cd $ROOT
-* tar xf /armedslack-devtools/minirootfs/roots/slack-current-miniroot_05Feb10.tar.bz2
+* tar xf /armedslack-devtools/minirootfs/roots/slack-current-miniroot_*.tar.bz2
 * cd /usr/linux-2.6.31.12
 * make ARCH=arm CROSS_COMPILE=/home/cycojesus/OE/oetmp/cross/armv5te/bin/arm-angstrom-linux-gnueabi- menuconfig
 * make ARCH=arm CROSS_COMPILE=/home/cycojesus/OE/oetmp/cross/armv5te/bin/arm-angstrom-linux-gnueabi-
