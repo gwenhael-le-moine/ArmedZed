@@ -16,7 +16,9 @@ h3. Armedslack-current on a Tosa, How?
 * nano $ROOT/etc/fstab (for me for now second CF's partition as /dev/hda2)
 * umount $ROOT
 
-Todo
+--------------------------------------
+
+h4. Todo
 ** OE
 *** kexecboot kernel
 *** toolchain
