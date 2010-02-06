@@ -2,16 +2,15 @@ Leveraging on "ArmedSlack":http://www.armedslack.org and inspired by "Zubuntu":h
 
 In here will be found SlackBuilds scripts to generate necessary packages, configuration files and various scripts and stuff.
 
-* Step 1
-** unpack a minimal set of packages and try to kexec-boot with a known working kernel ( angstrom 2.6.2{4,9} )
-** if it works, try to run pkgtools->setup
-
-
-
 -------------------------------------
+
+h3. Armedslack-current on a Tosa, How?
+
+* mount $CARD $ROOT
 * cd $ROOT
 * tar xf /armedslack-devtools/minirootfs/roots/slack-current-miniroot_05Feb10.tar.bz2
 * cd /usr/linux-2.6.31.12
 * make ARCH=arm CROSS_COMPILE=/home/cycojesus/OE/oetmp/cross/armv5te/bin/arm-angstrom-linux-gnueabi- menuconfig
 * make ARCH=arm CROSS_COMPILE=/home/cycojesus/OE/oetmp/cross/armv5te/bin/arm-angstrom-linux-gnueabi-
 * make ARCH=arm CROSS_COMPILE=/home/cycojesus/OE/oetmp/cross/armv5te/bin/arm-angstrom-linux-gnueabi- modules_install INSTALL_MOD_PATH=$ROOT
+* umount $ROOT
