@@ -18,8 +18,14 @@ h3. Armedslack-current on a Tosa, How?
 
 --------------------------------------
 
-h4. Todo
+h4. Todo:
+
+* detail / explain
 ** OE
 *** kexecboot kernel
 *** toolchain
 ** kernel compilation
+
+* install tslib & zaurusd
+* install X
+* install FBReader
