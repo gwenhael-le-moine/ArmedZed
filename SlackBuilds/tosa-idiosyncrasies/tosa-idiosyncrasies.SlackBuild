@@ -1,0 +1,66 @@
+#!/bin/sh -x
+
+# Written by Gwenhael Le Moine <gwenhael.le.moine@gmail.com>
+
+PRGNAM=tosa-idiosyncrasies
+VERSION=${VERSION:-$(date +%F|tr -d '-')}
+ARCH=${ARCH:-noarch}
+BUILD=${BUILD:-1}
+TAG=${TAG:-cyco}
+
+CWD=$(pwd)
+TMP=${TMP:-/tmp/cyco}
+PKG=$TMP/package-$PRGNAM
+OUTPUT=${OUTPUT:-/tmp}
+
+set -e
+
+rm -rf $PKG
+mkdir -p $TMP $PKG $OUTPUT
+cd $TMP
+rm -rf $PRGNAM-$VERSION
+
+mkdir -p $PRGNAM-$VERSION
+
+cd $PRGNAM-$VERSION
+chown -R root:root .
+find . \
+ \( -perm 777 -o -perm 775 -o -perm 711 -o -perm 555 -o -perm 511 \) \
+ -exec chmod 755 {} \; -o \
+ \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
+ -exec chmod 644 {} \;
+
+# mkdir -p $PKG$PREFIX/share/kbd/keymaps/i386/qwerty/
+# cp $CWD/tosa.map $PKG$PREFIX/share/kbd/keymaps/i386/qwerty/
+#gzip -9 $PKG$PREFIX/share/kbd/keymaps/i386/qwerty/tosa.map
+mkdir -p $PKG/etc
+cp $CWD/tosa.*map $PKG/etc
+
+mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+cp README* $PKG/usr/doc/$PRGNAM-$VERSION
+
+mkdir -p $PKG/install
+cat <<EOF > $PKG/install/doinst.sh
+#!/bin/sh
+
+grep -q "tosa\.map" /etc/rc.local || cat <<EOF2
+
+loadkeys /etc/tosa.map
+EOF2
+EOF
+cat <<EOF > $PKG/install/slack-desc
+$PRGNAM: $PRGNAM (idiosyncrasies of Tosa)
+$PRGNAM:
+$PRGNAM:
+$PRGNAM:
+$PRGNAM:
+$PRGNAM:
+$PRGNAM:
+$PRGNAM:
+$PRGNAM:
+$PRGNAM:
+$PRGNAM:
+EOF
+
+cd $PKG
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.txz
