@@ -37,7 +37,7 @@ mkdir -p $PKG/etc
 cp $CWD/tosa.*map $PKG/etc
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp README* $PKG/usr/doc/$PRGNAM-$VERSION
+cp $CWD/README* $PKG/usr/doc/$PRGNAM-$VERSION
 
 mkdir -p $PKG/install
 cat <<EOF > $PKG/install/doinst.sh
