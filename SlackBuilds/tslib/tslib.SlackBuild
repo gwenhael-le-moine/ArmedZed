@@ -52,7 +52,7 @@ CXXFLAGS="$SLKCFLAGS" \
   --sysconfdir=/etc \
   --localstatedir=/var \
   --mandir=/usr/man \
-  --libdir=/usr/lib64 \
+  --libdir=/usr/lib$(echo "$ARCH" | grep -o 64) \
   --build=$ARCH-slackware-linux
 
 make
