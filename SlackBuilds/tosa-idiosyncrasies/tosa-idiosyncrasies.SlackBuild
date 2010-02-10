@@ -43,9 +43,9 @@ mkdir -p $PKG/install
 cat <<EOF > $PKG/install/doinst.sh
 #!/bin/sh
 
-grep -q "tosa\.map" /etc/rc.local || cat <<EOF2
+grep -q "tosa\.map" /etc/rc.d/rc.local || cat <<EOF2 > /etc/rc.d/rc.local
 
-loadkeys /etc/tosa.map
+[ -e /etc/tosa.map ] && loadkeys /etc/tosa.map
 EOF2
 EOF
 cat <<EOF > $PKG/install/slack-desc
@@ -63,4 +63,4 @@ $PRGNAM:
 EOF
 
 cd $PKG
-/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.tgz
+/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.txz
