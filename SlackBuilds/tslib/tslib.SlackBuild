@@ -87,6 +87,20 @@ module dejitter delta=100
 module linear
 EOF
 
+mkdir -p $PKG/etc/profile.d
+cat <<EOF > $PKG/etc/profile.d/$PRGNAM.sh
+#!/bin/sh
+
+DEV=/dev/input/
+
+#export TSLIB_CONSOLEDEVICE=/dev/tty
+export TSLIB_CONSOLEDEVICE=/dev/tty
+export TSLIB_FBDEVICE=/dev/fb0
+export TSLIB_TSDEVICE=/dev/input/event2
+export TSLIB_CALIBFILE=/etc/pointercal
+export TSLIB_CONFFILE=/etc/ts.conf
+export TSLIB_PLUGINDIR=/usr/lib/ts
+EOF
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -f 1 -d : | \
     xargs strip --strip-unneeded 2> /dev/null || true
