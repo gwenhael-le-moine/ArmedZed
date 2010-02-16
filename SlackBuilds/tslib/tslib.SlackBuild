@@ -87,6 +87,29 @@ module dejitter delta=100
 module linear
 EOF
 
+mkdir -p $PKG/etc/profile.d/
+cat <<EOF > $PKG/etc/profile.d/tslib.sh
+#!/bin/sh
+
+export TSLIB_CONCOLEDEVICE=/dev/tty
+export TSLIB_FBDEVICE=/dev/fb0
+export TSLIB_TSDEVICE=/dev/input/event2
+export TSLIB_CALIBFILE=/etc/pointercal
+export TSLIB_CONFFILE=/etc/ts.conf
+export TSLIB_PLUGINDIR=/usr/lib/ts
+EOF
+cat <<EOF > $PKG/etc/profile.d/tslib.csh
+#!/bin/csh
+
+setenv TSLIB_CONCOLEDEVICE /dev/tty
+setenv TSLIB_FBDEVICE /dev/fb0
+setenv TSLIB_TSDEVICE /dev/input/event2
+setenv TSLIB_CALIBFILE /etc/pointercal
+setenv TSLIB_CONFFILE /etc/ts.conf
+setenv TSLIB_PLUGINDIR /usr/lib/ts
+EOF
+chmod +x  $PKG/etc/profile.d/*
+
 ( cd $PKG
   find . | xargs file | grep "executable" | grep ELF | cut -f 1 -d : | \
     xargs strip --strip-unneeded 2> /dev/null || true
