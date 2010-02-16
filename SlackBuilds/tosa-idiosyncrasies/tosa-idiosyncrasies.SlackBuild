@@ -33,8 +33,9 @@ find . \
 # mkdir -p $PKG$PREFIX/share/kbd/keymaps/i386/qwerty/
 # cp $CWD/tosa.map $PKG$PREFIX/share/kbd/keymaps/i386/qwerty/
 #gzip -9 $PKG$PREFIX/share/kbd/keymaps/i386/qwerty/tosa.map
-mkdir -p $PKG/etc
-cp $CWD/tosa.*map $PKG/etc
+mkdir -p $PKG/etc/X11/xinit/
+cp $CWD/tosa.map $PKG/etc
+cp tosa.xmodmap $PKG/etc/X11/xinit/.Xmodmap
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp $CWD/README* $PKG/usr/doc/$PRGNAM-$VERSION
