@@ -84,7 +84,31 @@ module_raw input
 module pthres pmin=1
 module variance delta=30
 module dejitter delta=100
-module linear
+module linear xyswap
+EOF
+
+mkdir -p $PKG/etc/profile.d
+cat <<EOF > $PKG/etc/profile.d/$PRGNAM.sh
+#!/bin/sh
+
+#export TSLIB_CONSOLEDEVICE=/dev/tty
+export TSLIB_CONSOLEDEVICE=/dev/tty
+export TSLIB_FBDEVICE=/dev/fb0
+export TSLIB_TSDEVICE=/dev/input/event2
+export TSLIB_CALIBFILE=/etc/pointercal
+export TSLIB_CONFFILE=/etc/ts.conf
+export TSLIB_PLUGINDIR=/usr/lib/ts
+EOF
+cat <<EOF > $PKG/etc/profile.d/$PRGNAM.csh
+#!/bin/csh
+
+#setenv TSLIB_CONSOLEDEVICE /dev/tty
+setenv TSLIB_CONSOLEDEVICE /dev/tty
+setenv TSLIB_FBDEVICE /dev/fb0
+setenv TSLIB_TSDEVICE /dev/input/event2
+setenv TSLIB_CALIBFILE /etc/pointercal
+setenv TSLIB_CONFFILE /etc/ts.conf
+setenv TSLIB_PLUGINDIR /usr/lib/ts
 EOF
 
 mkdir -p $PKG/etc/profile.d/
