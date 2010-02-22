@@ -48,6 +48,8 @@ mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
 ( cd $PKG/boot/
     # in doubt about how kexecboot's mysterious ways
     # let's try all of what the internet has to say...
+    # Kexecboot: http://projects.linuxtogo.org/projects/kexecboot/
+    #        and http://www.angstrom-distribution.org/demo/kexecboot/
     cat <<EOF > image.nfo
 Armedslack-current, $PRGNAM-$VERSION-$BUILD$PACKAGER
 EOF
