@@ -29,7 +29,11 @@ mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
 )
 
 ( cd $TMP/$PRGNAM-$VERSION
-    cp $CWD/config .config
+    if [ -e $CWD/config-$VERSION ] ; then
+        cp $CWD/config-$VERSION .config
+    else
+        cp $CWD/config .config
+    fi
     sed -i "s|CONFIG_LOCALVERSION=\".*\"|CONFIG_LOCALVERSION=\"-$BUILD$PACKAGER\"|" .config
 
     ARCH=$ARCH CROSS_COMPILE=$CROSS_COMPILE make oldconfig
