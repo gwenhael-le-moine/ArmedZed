@@ -1,0 +1,89 @@
+#!/bin/sh
+
+PRGNAM=linux
+VERSION=2.6.31.12
+BUILD=1
+PACKAGER=cyco
+ARCH=arm
+
+CWD=$(pwd)
+TMP=/tmp/$PACKAGER
+PKG=$TMP/pkg-$PRGNAM
+OUTPUT=/tmp
+
+LIBSUFFIX=$(echo "$ARCH" | grep -o 64)
+
+CROSS_COMPILE=$CWD/armv5te/bin/arm-angstrom-linux-gnueabi-
+
+SRC_URL="http://www.kernel.org/pub/linux/kernel/v2.6$(echo \"$VERSION\" | grep -q \"\-rc\" && echo \"/testing\" )"
+
+rm -fr $PKG
+mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
+
+( cd $TMP
+    if [ ! -e $CWD/$PRGNAM-$VERSION.tar.?z* ] ; then
+        ( cd $CWD
+            wget -c "$SRC_URL/$PRGNAM-$VERSION.tar.bz2"
+        )
+    fi
+    tar xf $CWD/$PRGNAM-$VERSION.tar.?z*
+)
+
+( cd $TMP/$PRGNAM-$VERSION
+    cp $CWD/config .config
+    sed -i "s|CONFIG_LOCALVERSION=\".*\"|CONFIG_LOCALVERSION=\"-$BUILD$PACKAGER\"|" .config
+
+    ARCH=$ARCH CROSS_COMPILE=$CROSS_COMPILE make oldconfig
+    ARCH=$ARCH CROSS_COMPILE=$CROSS_COMPILE make
+
+    mv $CWD/config $CWD/config.$(date +%F)
+    cp .config $CWD/config
+    cp .config System.map arch/arm/boot/zImage $PKG/boot/$VERSION-$BUILD$PACKAGER
+    mv $PKG/boot/$VERSION-$BUILD$PACKAGER/{.,}config
+
+    make ARCH=$ARCH modules_install INSTALL_MOD_PATH=$PKG
+    rm $PKG/lib$LIBSUFFIX/modules/$VERSION-$BUILD$PACKAGER/{build,source}
+)
+
+( cd $PKG/boot/
+    cat <<EOF > image.nfo
+Armedslack-current, $PRGNAM-$VERSION-$BUILD$PACKAGER
+EOF
+    cat <<EOF > kernel-cmdline
+console=ttyS0,115200n8 console=tty1 noinitrd dyntick=enable
+EOF
+)
+
+( cd $PKG
+    mkdir -p $PKG/install
+
+    cat <<EOF > $PKG/install/slack-desc
+#!/bin/sh
+
+cd /boot
+ln -sf $VERSION-$BUILD$PACKAGER/zImage zImage
+EOF
+    cat <<EOF > $PKG/install/slack-desc
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|' on
+# the right side marks the last column you can put a character in.  You must make
+# exactly 11 lines for the formatting to be correct.  It's also customary to
+# leave one space after the ':'.
+
+       |-----handy-ruler------------------------------------------------------|
+$PRGNAM: $PRGNAM (kernel)
+$PRGNAM: 
+$PRGNAM: Linux is a clone of the operating system Unix, written from scratch by
+$PRGNAM: Linus Torvalds with assistance from a loosely-knit team of hackers
+$PRGNAM: across the Net. It aims towards POSIX and Single UNIX Specification
+$PRGNAM: compliance.
+$PRGNAM: 
+$PRGNAM: It has all the features you would expect in a modern fully-fledged Unix
+$PRGNAM: 
+$PRGNAM: http://www.kernel.org
+$PRGNAM: 
+EOF
+
+    makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$BUILD$PACKAGER.txz
+)
