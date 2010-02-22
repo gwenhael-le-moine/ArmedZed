@@ -46,11 +46,19 @@ mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
 )
 
 ( cd $PKG/boot/
+    # in doubt about how kexecboot's mysterious ways
+    # let's try all of what the internet has to say...
     cat <<EOF > image.nfo
 Armedslack-current, $PRGNAM-$VERSION-$BUILD$PACKAGER
 EOF
     cat <<EOF > kernel-cmdline
-console=ttyS0,115200n8 console=tty1 noinitrd dyntick=enable
+rootfstype=ext2 console=ttyS0,115200n8 console=tty1 noinitrd dyntick=enable
+EOF
+cat <<EOF > boot.cfg
+LABEL=Armedslack-current, $PRGNAM-$VERSION-$BUILD$PACKAGER
+KERNEL=/boot/$VERSION-$BUILD$PACKAGER/zImage
+APPEND=console=ttyS0,115200n8 console=tty1 noinitrd  dyntick=enable
+root=rootfstype=ext2
 EOF
 )
 
