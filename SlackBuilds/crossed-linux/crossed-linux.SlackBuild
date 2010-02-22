@@ -43,6 +43,9 @@ mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
 
     make ARCH=$ARCH modules_install INSTALL_MOD_PATH=$PKG
     rm $PKG/lib/modules/$VERSION-$BUILD$PACKAGER/{build,source}
+
+    mkdir -p $PKG/etc/rc.d/
+    cp $CWD/rc.modules.new $PKG/etc/rc.d/
 )
 
 ( cd $PKG/boot/
@@ -83,6 +86,7 @@ config() {
 config /boot/image.nfo.new
 config /boot/kernel-cmdline.new
 config /boot/boot.cfg.new
+config /etc/rc.d/rc.modules.new
 
 cd /boot
 ln -sf $VERSION-$BUILD$PACKAGER/zImage zImage
