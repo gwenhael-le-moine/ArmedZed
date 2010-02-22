@@ -59,9 +59,23 @@ make install DESTDIR=$PKG
 ( cd $PKG/etc/
 	mv init.d rc.d
 	mv rc.d/zaurusd rc.d/rc.zaurusd
+    sed -i 's|${exec_prefix}|/usr|g' rc.d/rc.zaurusd
 )
 
+mkdir -p $PKG/usr/doc/$PRGNAM
+cp AUTHORS COPYING ChangeLog INSTALL NEWS README $PKG/usr/doc/$PRGNAM
+
 mkdir -p $PKG/install
+cat <<EOF > $PKG/install/doinst.sh
+if [ ! $(grep -q "rc\.zaurusd" /etc/rc.d/rc.local) ] ; then
+    cat <<EOF2 >> /etc/rc.d/rc.local
+
+if [ -x /etc/rc.d/rc.zaurusd ] ; then
+    /etc/rc.d/rc.zaurusd start
+fi
+EOF2
+EOF
+
 cat <<EOF > $PKG/install/slack-desc
 # HOW TO EDIT THIS FILE:
 # The "handy ruler" below makes it easier to edit a package description.  Line
