@@ -77,6 +77,7 @@ if [ -e /usr/src/$PRGNAM-$VERSION-$BUILD$PACKAGER ] ; then
         ln -s /usr/src/$PRGNAM-$VERSION-$BUILD$PACKAGER/build /lib/modules/$VERSION-$BUILD$PACKAGER/
         ln -s /usr/src/$PRGNAM-$VERSION-$BUILD$PACKAGER/source /lib/modules/$VERSION-$BUILD$PACKAGER/
     )
+fi
 EOF
     cat <<EOF > $PKG/install/slack-desc
 # HOW TO EDIT THIS FILE:
