@@ -57,29 +57,25 @@ CXXFLAGS="$SLKCFLAGS" \
 make
 make install DESTDIR=$PKG
 ( cd $PKG/etc/
-	mkdir rc.d
-	mv ./init.d/zaurusd ./rc.d/rc.zaurusd
-	rm -fr ./init.d
+	mv init.d rc.d
+	mv rc.d/zaurusd rc.d/rc.zaurusd
+    sed -i 's|${exec_prefix}|/usr|g' rc.d/rc.zaurusd
 )
 
-( cd $PKG
-  find . | xargs file | grep "executable" | grep ELF | cut -f 1 -d : | \
-    xargs strip --strip-unneeded 2> /dev/null || true
-  find . | xargs file | grep "shared object" | grep ELF | cut -f 1 -d : | \
-    xargs strip --strip-unneeded 2> /dev/null
-)
-
-( cd $PKG/usr/man
-  find . -type f -exec gzip -9 {} \;
-  for i in $( find . -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
-)
-
-mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a \
-  AUTHORS COPYING ChangeLog INSTALL NEWS README \
-    $PKG/usr/doc/$PRGNAM-$VERSION
+mkdir -p $PKG/usr/doc/$PRGNAM
+cp AUTHORS COPYING ChangeLog INSTALL NEWS README $PKG/usr/doc/$PRGNAM
 
 mkdir -p $PKG/install
+cat <<EOF > $PKG/install/doinst.sh
+if [ ! $(grep -q "rc\.zaurusd" /etc/rc.d/rc.local) ] ; then
+    cat <<EOF2 >> /etc/rc.d/rc.local
+
+if [ -x /etc/rc.d/rc.zaurusd ] ; then
+    /etc/rc.d/rc.zaurusd start
+fi
+EOF2
+EOF
+
 cat <<EOF > $PKG/install/slack-desc
 # HOW TO EDIT THIS FILE:
 # The "handy ruler" below makes it easier to edit a package description.  Line
@@ -89,18 +85,19 @@ cat <<EOF > $PKG/install/slack-desc
 # leave one space after the ':'.
 
        |-----handy-ruler------------------------------------------------------|
-zaurusd: zaurusd (Touchscreen utils and abstraction layer)
-zaurusd:  
-zaurusd: zaurusd currently aims to support the hardware quirks specific to the
-zaurusd: Sharp Zaurus models with scripts and other utils. Supported features
-zaurusd: include:
-zaurusd: * The screen hinge sensors
-zaurusd: * The touchscreen keys (outside the normal screen area)
-zaurusd: * The headphone jack and ALSA mixer
-zaurusd: 
-zaurusd: 
-zaurusd: homepage: http://svn.o-hand.com/view/misc/trunk/zaurusd/
+$PRGNAM: $PRGNAM (Touchscreen utils and abstraction layer)
+$PRGNAM:  
+$PRGNAM: $PRGNAM currently aims to support the hardware quirks specific to the
+$PRGNAM: Sharp Zaurus models with scripts and other utils. Supported features
+$PRGNAM: include:
+$PRGNAM: * The screen hinge sensors
+$PRGNAM: * The touchscreen keys (outside the normal screen area)
+$PRGNAM: * The headphone jack and ALSA mixer
+$PRGNAM: 
+$PRGNAM: 
+$PRGNAM: homepage: http://svn.o-hand.com/view/misc/trunk/$PRGNAM/
 EOF
 
-cd $PKG
-/sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.txz
+( cd $PKG
+    makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.txz
+)
