@@ -49,13 +49,13 @@ mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
     # let's try all of what the internet has to say...
     # Kexecboot: http://projects.linuxtogo.org/projects/kexecboot/
     #        and http://www.angstrom-distribution.org/demo/kexecboot/
-    cat <<EOF > image.nfo
+    cat <<EOF > image.nfo.new
 Armedslack-current, $PRGNAM-$VERSION-$BUILD$PACKAGER
 EOF
-    cat <<EOF > kernel-cmdline
+    cat <<EOF > kernel-cmdline.new
 rootfstype=ext2 console=ttyS0,115200n8 console=tty1 noinitrd dyntick=enable
 EOF
-    cat <<EOF > boot.cfg
+    cat <<EOF > boot.cfg.new
 LABEL=Armedslack-current, $PRGNAM-$VERSION-$BUILD$PACKAGER
 KERNEL=/boot/$VERSION-$BUILD$PACKAGER/zImage
 APPEND=console=ttyS0,115200n8 console=tty1 noinitrd dyntick=enable
@@ -68,6 +68,22 @@ EOF
 
     cat <<EOF > $PKG/install/slack-desc
 #!/bin/sh
+
+config() {
+  NEW="\$1"
+  OLD="\$(dirname \$NEW)/\$(basename \$NEW .new)"
+  # If there's no config file by that name, mv it over:
+  if [ ! -r \$OLD ]; then
+    mv \$NEW \$OLD
+  elif [ "\$(cat \$OLD | md5sum)" = "\$(cat \$NEW | md5sum)" ]; then # toss the redundant copy
+    rm \$NEW
+  fi
+  # Otherwise, we leave the .new copy for the admin to consider...
+}
+
+config /boot/image.nfo.new
+config /boot/kernel-cmdline.new
+config /boot/boot.cfg.new
 
 cd /boot
 ln -sf $VERSION-$BUILD$PACKAGER/zImage zImage
