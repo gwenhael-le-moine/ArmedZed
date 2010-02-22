@@ -6,6 +6,10 @@ In here will be found SlackBuilds scripts to generate necessary packages, config
 
 h3. Armedslack-current on a Tosa, How?
 
+* download and flash a kexecboot kernel
+** http://projects.linuxtogo.org/projects/kexecboot/
+** http://www.angstrom-distribution.org/demo/kexecboot/
+** (you can also build one through OE if you have time and disk-space...)
 * mount $CARD $ROOT
 * cd $ROOT
 * tar xf /armedslack-devtools/minirootfs/roots/slack-current-miniroot_*.tar.bz2
@@ -23,10 +27,4 @@ h4. Todo:
 
 * detail / explain
 ** OE
-*** kexecboot kernel
 *** toolchain
-** kernel compilation
-
-* install tslib & zaurusd
-* install X
-* install FBReader
