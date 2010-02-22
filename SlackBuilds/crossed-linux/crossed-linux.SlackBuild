@@ -12,8 +12,6 @@ TMP=/tmp/$PACKAGER
 PKG=$TMP/pkg-$PRGNAM
 OUTPUT=/tmp
 
-LIBSUFFIX=$(echo "$ARCH" | grep -o 64)
-
 CROSS_COMPILE=$CWD/armv5te/bin/arm-angstrom-linux-gnueabi-
 
 SRC_URL="http://www.kernel.org/pub/linux/kernel/v2.6$(echo \"$VERSION\" | grep -q \"\-rc\" && echo \"/testing\" )"
@@ -43,7 +41,7 @@ mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
     mv $PKG/boot/$VERSION-$BUILD$PACKAGER/{.,}config
 
     make ARCH=$ARCH modules_install INSTALL_MOD_PATH=$PKG
-    rm $PKG/lib$LIBSUFFIX/modules/$VERSION-$BUILD$PACKAGER/{build,source}
+    rm $PKG/lib/modules/$VERSION-$BUILD$PACKAGER/{build,source}
 )
 
 ( cd $PKG/boot/
@@ -73,6 +71,12 @@ EOF
 
 cd /boot
 ln -sf $VERSION-$BUILD$PACKAGER/zImage zImage
+
+if [ -e /usr/src/$PRGNAM-$VERSION-$BUILD$PACKAGER ] ; then
+    ( cd /lib/modules/$VERSION-$BUILD$PACKAGER/
+        ln -s /usr/src/$PRGNAM-$VERSION-$BUILD$PACKAGER/build /lib/modules/$VERSION-$BUILD$PACKAGER/
+        ln -s /usr/src/$PRGNAM-$VERSION-$BUILD$PACKAGER/source /lib/modules/$VERSION-$BUILD$PACKAGER/
+    )
 EOF
     cat <<EOF > $PKG/install/slack-desc
 # HOW TO EDIT THIS FILE:
