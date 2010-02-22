@@ -9,12 +9,13 @@ h3. Armedslack-current on a Tosa, How?
 * mount $CARD $ROOT
 * cd $ROOT
 * tar xf /armedslack-devtools/minirootfs/roots/slack-current-miniroot_*.tar.bz2
-* cd /usr/linux-2.6.31.12 (latest tried and known compiling for tosa)
-* make ARCH=arm CROSS_COMPILE=/home/cycojesus/OE/oetmp/cross/armv5te/bin/arm-angstrom-linux-gnueabi- menuconfig
-* make ARCH=arm CROSS_COMPILE=/home/cycojesus/OE/oetmp/cross/armv5te/bin/arm-angstrom-linux-gnueabi-
-* make ARCH=arm CROSS_COMPILE=/home/cycojesus/OE/oetmp/cross/armv5te/bin/arm-angstrom-linux-gnueabi- modules_install INSTALL_MOD_PATH=$ROOT
-* nano $ROOT/etc/fstab (for me for now second CF's partition as /dev/hda2)
+* build and install SlackBuilds/crossed-linux
+* nano $ROOT/etc/fstab to use /dev/root as device for /
 * umount $ROOT
+* boot it in Tosa
+* if possible make a full installation of Armedslack
+* continue by building and installing SlackBuilds/{tosa-idiosyncrasies,tslib,zaurusd}
+* enjoy ;)
 
 --------------------------------------
 
