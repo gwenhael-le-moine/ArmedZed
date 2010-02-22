@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 
 PRGNAM=linux
 PKG_NAME=crossed-$PRGNAM
