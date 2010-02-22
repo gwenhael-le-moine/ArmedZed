@@ -33,6 +33,7 @@ mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
     sed -i "s|CONFIG_LOCALVERSION=\".*\"|CONFIG_LOCALVERSION=\"-$BUILD$PACKAGER\"|" .config
 
     ARCH=$ARCH CROSS_COMPILE=$CROSS_COMPILE make oldconfig
+    [ "$1" == "menuconfig" ] && ARCH=$ARCH CROSS_COMPILE=$CROSS_COMPILE make menuconfig
     ARCH=$ARCH CROSS_COMPILE=$CROSS_COMPILE make
 
     mv $CWD/config $CWD/config.$(date +%F)
