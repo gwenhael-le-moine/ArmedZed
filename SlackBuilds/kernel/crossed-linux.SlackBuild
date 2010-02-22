@@ -59,7 +59,7 @@ EOF
 cat <<EOF > boot.cfg
 LABEL=Armedslack-current, $PRGNAM-$VERSION-$BUILD$PACKAGER
 KERNEL=/boot/$VERSION-$BUILD$PACKAGER/zImage
-APPEND=console=ttyS0,115200n8 console=tty1 noinitrd  dyntick=enable
+APPEND=console=ttyS0,115200n8 console=tty1 noinitrd dyntick=enable
 root=rootfstype=ext2
 EOF
 )
