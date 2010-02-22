@@ -1,6 +1,7 @@
 #!/bin/sh
 
 PRGNAM=linux
+PKG_NAME=crossed-$PRGNAM
 VERSION=2.6.31.12
 BUILD=1
 PACKAGER=cyco
@@ -95,5 +96,5 @@ $PRGNAM: http://www.kernel.org
 $PRGNAM: 
 EOF
 
-    makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$BUILD$PACKAGER.txz
+    makepkg -l y -c n $OUTPUT/$PKG_NAME-$VERSION-$BUILD$PACKAGER.txz
 )
