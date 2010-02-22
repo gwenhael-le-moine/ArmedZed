@@ -40,8 +40,8 @@ mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
     [ "$1" == "menuconfig" ] && ARCH=$ARCH CROSS_COMPILE=$CROSS_COMPILE make menuconfig
     ARCH=$ARCH CROSS_COMPILE=$CROSS_COMPILE make
 
-    mv $CWD/config $CWD/config.$(date +%F)
-    cp .config $CWD/config
+    # mv $CWD/config $CWD/config.$(date +%F)
+    # cp .config $CWD/config-$VERSION.$(date +%F)
     cp .config System.map arch/arm/boot/zImage $PKG/boot/$VERSION-$BUILD$PACKAGER
     mv $PKG/boot/$VERSION-$BUILD$PACKAGER/{.,}config
 
