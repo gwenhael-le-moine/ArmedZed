@@ -11,7 +11,7 @@ $ man 1 showkey
 - Keycodes ( showkey )
 /IN PROGRESS/
 |_.          |
-||
+|XF86AudioRecord|
 
 |_.   |_.   |_.   |_.   |_.   |_.   |_.   |_.   |_.   |_.        |
 |q      |w    |e    |r    |t    |y    |u    |i    |o    |p         |
