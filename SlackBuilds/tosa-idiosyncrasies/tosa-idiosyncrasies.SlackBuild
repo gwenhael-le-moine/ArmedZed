@@ -32,7 +32,10 @@ find . \
 
 mkdir -p $PKG/etc/X11/xinit/
 cp $CWD/tosa.map $PKG/etc
-cp $CWD/tosa.xmodmap $PKG/etc/X11/xinit/.Xmodmap
+cp $CWD/tosa.xmodmap $PKG/etc/X11/xinit/Xmodmap
+( cd $PKG/etc/X11/xinit/
+    ln -s Xmodmap .Xmodmap
+)
 
 mkdir -p $PKG/etc/profile.d/
 cat <<EOF > $PKG/etc/profile.d/$PRGNAM.sh
