@@ -1,7 +1,40 @@
 -*- textile -*-
 
+http://tldp.org/HOWTO/Keyboard-and-Console-HOWTO-15.html
+
+# tosa.map
+$ man 5 keymaps
+$ man 1 loadkeys
+$ man 2 dumpkeys
+$ man 1 showkey
+
+- Keycodes ( showkey )
+/IN PROGRESS/
+|_.          |
+||
+
+|_.   |_.   |_.   |_.   |_.   |_.   |_.   |_.   |_.   |_.        |
+|q      |w    |e    |r    |t    |y    |u    |i    |o    |p         |
+|_.   |_.   |_.   |_.   |_.   |_.   |_.   |_.   |_.   |_.        |
+|a      |s    |d    |f    |g    |h    |j    |k    |l    |Backspace |
+|_.   |_.   |_.   |_.   |_.   |_.   |_.   |_.   |_.   |_.        |
+|Shift_L|z    |x    |c    |v    |b    |n    |m    |,    |Shift_R   |
+|_.  |_.   |_.   |_.     |_.   |_.     |_.     |_.   |_.   |_.        |
+|Fn     |Tab  |/    |     |space|     |     |'    |.    |enter     |
+
+|_.    |_.    |_.        |_.  |_.               |
+|Alt_L    |Meta_L|XF86Launch1| Menu|XF86Mail         |
+|_.     |      |_.        |     |_.              |
+|Control_L|      |  Up       |     |XF86KbdLightOnOff|
+|_.      |_.   |_.         |_.  |_.              |
+|Escape   | Left |space      |Right|KP_Enter         |
+|         |      |_.        |     |                 |
+|         |      | Down      |     |                 |
+
 # tosa.xmodmap
-- Keycodes
+$ man 1 xmodmap
+
+- Keycodes ( xbindkeys -k )
 
 |_.132          |
 |XF86AudioRecord|
@@ -23,23 +56,3 @@
 |Escape   | Left |space      |Right|KP_Enter         |
 |         |      |_. 116       |     |                 |
 |         |      | Down      |     |                 |
-
-
-$ man 5 keymaps
-$ man 1 loadkeys
-$ man 2 dumpkeys
-$ man 1 showkey
-
-$ man 1 xmodmap
-
-- Find a keycode [http://tldp.org/HOWTO/Keyboard-and-Console-HOWTO-15.html]
-  - under X
-        xbindkeys -k
-  - console
-        showkey
-        dumpkeys
-
-
-
-- TODO
-  - rewrite tosa.map
