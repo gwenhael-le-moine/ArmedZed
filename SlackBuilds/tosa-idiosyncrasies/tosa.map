@@ -3,15 +3,13 @@ keymaps 0-2,4-5,8,12
 # Change the above line into
 #       keymaps 0-2,4-6,8,12
 # in case you want the entries
-#       altgr   control keycode  83 = Boot            
-#       altgr   control keycode 111 = Boot            
+#       altgr   control keycode  83 = Boot
+#       altgr   control keycode 111 = Boot
 # below.
 #
-keycode    1 =
-keycode   14 = BackSpace
-       altgr   keycode   14 = Delete
-keycode   15 = Tab
-       altgr   keycode   15 = Caps_Lock
+#-------------------------------------------------------------------------------
+keycode  124 =
+#-------------------------------------------------------------------------------
 keycode   16 = q
        altgr   keycode   16 = one
 keycode   17 = w
@@ -32,11 +30,7 @@ keycode   24 = o
        altgr   keycode   24 = nine
 keycode   25 = p
        altgr   keycode   25 = zero
-keycode   26 =
-keycode   27 =
-keycode   28 = Return
-       altgr   keycode   28 = greater
-keycode   29 = Control
+#-------------------------------------------------------------------------------
 keycode   30 = a
        altgr   keycode   30 = exclam
 keycode   31 = s
@@ -49,20 +43,18 @@ keycode   34 = g
        altgr   keycode   34 = percent
 keycode   35 = h
        altgr   keycode   35 = underscore
-keycode   36 = j             
+keycode   36 = j
        altgr   keycode   36 = ampersand
 keycode   37 = k
        altgr   keycode   37 = asterisk
 keycode   38 = l
        altgr   keycode   38 = parenleft
-keycode   39 =
-keycode   40 = apostrophe     quotedbl
-       altgr   keycode   40 = asciitilde
-keycode   41 =
+keycode   14 = BackSpace
+       altgr   keycode   14 = Delete
+#-------------------------------------------------------------------------------
 keycode   42 = Shift
-keycode   43 =
 keycode   44 = z
-       altgr   keycode   44 = backslash 
+       altgr   keycode   44 = backslash
 keycode   45 = x
 keycode   46 = c
        altgr   keycode   46 = Control_c
@@ -76,48 +68,78 @@ keycode   50 = m
        altgr   keycode   50 = equal
 keycode   51 = comma          semicolon
        altgr   keycode   51 = parenright
+keycode   54 = Shift
+#-------------------------------------------------------------------------------
+keycode  100 = AltGr
+keycode   15 = Tab
+       altgr   keycode   15 = Compose #Caps_Lock
+keycode   53 = slash          question
+       altgr   keycode   53 = Num_Lock
+keycode   57 = space          space
+       altgr   keycode   57 = bar
+keycode   40 = apostrophe     quotedbl
+       altgr   keycode   40 = asciitilde
 keycode   52 = period	      colon
        altgr   keycode   52 = less
        control keycode   52 = Compose
-keycode   53 = slash          question
-       altgr   keycode   53 = Num_Lock
-keycode   54 = Shift
-keycode   55 = 
-keycode   56 = Alt
-keycode   57 = space          space
-       altgr   keycode   57 = bar
-keycode   58 =
-keycode   59 = F9             # Calendar    
-       altgr   keycode   59 = braceleft
-keycode   60 = F10            # Contact
-       altgr   keycode   60 = bracketleft
-keycode   61 = AltGr          # Fn
-keycode   62 = Escape         # Cancel
-keycode   63 = space          # Bulleye
-keycode   64 = Control        # Dot 
-keycode   65 = F15            # Backlight/Rotate
-       altgr   keycode   65 = asciicircum
-keycode   66 = F24            # Rec
-keycode   67 = F12            # Home
-       altgr   keycode   67 = grave
-keycode   68 = F13            # Email 
-       altgr   keycode   68 = braceright
-keycode   79 = F15
-keycode   80 = F16
-keycode   82 = F17
-keycode   87 = Return         # OK
-keycode   88 = F11            # Menu
-       altgr   keycode   88 = bracketright
-keycode   97 = Control
-keycode   99 = F12
-keycode  103 = Up             Scroll_Backward 
+keycode   28 = Return
+       altgr   keycode   28 = greater
+#-------------------------------------------------------------------------------
+keycode   93 = Alt
+keycode   90 =
+keycode  122 =
+keycode  123 =
+keycode   85 =
+#-------------------------------------------------------------------------------
+keycode   29 = Control
+keycode  103 = Up             Scroll_Backward
        altgr   keycode  103 = PageUp
+keycode   94 =
+#-------------------------------------------------------------------------------
+keycode    1 = Escape
 keycode  105 = Left           Prior
        altgr   keycode  105 = Decr_Console
+keycode   91 = space
 keycode  106 = Right          Next
        altgr   keycode  106 = Incr_Console
-keycode  108 = Down           Scroll_Forward 
+keycode   92 = Return
+#-------------------------------------------------------------------------------
+keycode  108 = Down           Scroll_Forward
        altgr   keycode  108 = PageDown
+#-------------------------------------------------------------------------------
+
+! keycode   26 =
+! keycode   27 =
+! keycode   39 =
+! keycode   41 =
+! keycode   43 =
+! keycode   55 = 
+! keycode   56 = Alt
+! keycode   58 =
+! keycode   59 = F9             # Calendar
+!        altgr   keycode   59 = braceleft
+! keycode   60 = F10            # Contact
+!        altgr   keycode   60 = bracketleft
+! keycode   61 = AltGr          # Fn
+! keycode   62 = Escape         # Cancel
+! keycode   63 = space          # Bulleye
+! keycode   64 = Control        # Dot
+! keycode   65 = F15            # Backlight/Rotate
+!        altgr   keycode   65 = asciicircum
+! keycode   66 = F24            # Rec
+! keycode   67 = F12            # Home
+!        altgr   keycode   67 = grave
+! keycode   68 = F13            # Email
+!        altgr   keycode   68 = braceright
+! keycode   79 = F15
+! keycode   80 = F16
+! keycode   82 = F17
+! keycode   87 = Return         # OK
+! keycode   88 = F11            # Menu
+!        altgr   keycode   88 = bracketright
+! keycode   97 = Control
+! keycode   99 = F12
+
 string F1 = "\033[[A"
 string F2 = "\033[[B"
 string F3 = "\033[[C"
