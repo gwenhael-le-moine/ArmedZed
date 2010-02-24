@@ -10,7 +10,8 @@ $ man 1 showkey
 
 - Keycodes ( showkey )
 /IN PROGRESS/
-|_. 124          |
+
+|_.124          |
 |XF86AudioRecord|
 
 |_.16   |_.17   |_.18   |_.19   |_.20   |_.21   |_.22   |_.23   |_.24   |_.25        |
