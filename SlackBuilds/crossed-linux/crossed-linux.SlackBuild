@@ -124,5 +124,5 @@ $PRGNAM: http://www.kernel.org
 $PRGNAM: 
 EOF
 
-    makepkg -l y -c n $OUTPUT/$PKG_NAME-$VERSION-$BUILD$PACKAGER.txz
+    makepkg -l y -c n $OUTPUT/$PKG_NAME-$VERSION-$ARCH-$BUILD$PACKAGER.txz
 )
