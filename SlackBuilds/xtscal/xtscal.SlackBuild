@@ -46,7 +46,7 @@ find . \
 patch -p1 -i $CWD/change-cross.patch
 patch -p1 -i $CWD/cleanup.patch
 
-[ ! -e ./configure ] && ./autogen.sh
+autoreconf
 
 CFLAGS="$SLKCFLAGS" \
 CXXFLAGS="$SLKCFLAGS" \
