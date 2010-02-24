@@ -24,9 +24,22 @@
 |         |      |_. 116       |     |                 |
 |         |      | Down      |     |                 |
 
-- Find a keycode
+
+$ man 5 keymaps
+$ man 1 loadkeys
+$ man 2 dumpkeys
+$ man 1 showkey
+
+$ man 1 xmodmap
+
+- Find a keycode [http://tldp.org/HOWTO/Keyboard-and-Console-HOWTO-15.html]
   - under X
         xbindkeys -k
   - console
         showkey
+        dumpkeys
 
+
+
+- TODO
+  - rewrite tosa.map
