@@ -23,17 +23,20 @@ elif [ "$ARCH" = "arm" ]; then
   SLKCFLAGS="-O2"
 fi
 
-set -e
-
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf $PRGNAM-$VERSION
 
-[ -e $CWD/$PRGNAM-$VERSION.tar.gz ] && \
-	tar xvf $CWD/$PRGNAM-$VERSION.tar.gz \
-	|| \
-	git clone git://anongit.freedesktop.org/xorg/lib/libXCalibrate $PRGNAM-$VERSION
+if [ -e $CWD/$PRGNAM-$VERSION.tar.gz ] ; then
+	tar xvf $CWD/$PRGNAM-$VERSION.tar.gz
+else
+    if [ -e $CWD/$PRGNAM ] ; then
+        cp -R $CWD/$PRGNAM $PRGNAM-$VERSION
+    else
+	    git clone git://anongit.freedesktop.org/xorg/lib/libXCalibrate $PRGNAM-$VERSION
+    fi
+fi
 
 cd $PRGNAM-$VERSION
 chown -R root:root .
@@ -65,10 +68,10 @@ make install DESTDIR=$PKG
     xargs strip --strip-unneeded 2> /dev/null
 )
 
-( cd $PKG/usr/man
-  find . -type f -exec gzip -9 {} \;
-  for i in $( find . -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
-)
+# ( cd $PKG/usr/man
+#   find . -type f -exec gzip -9 {} \;
+#   for i in $( find . -type l ) ; do ln -s $( readlink $i ).gz $i.gz ; rm $i ; done
+# )
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp -a \
