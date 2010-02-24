@@ -5,7 +5,7 @@
 PRGNAM=tosa-idiosyncrasies
 VERSION=${VERSION:-$(date +%F|tr -d '-')}
 ARCH=${ARCH:-noarch}
-BUILD=${BUILD:-1}
+BUILD=${BUILD:-2}
 TAG=${TAG:-cyco}
 
 CWD=$(pwd)
@@ -30,12 +30,46 @@ find . \
  \( -perm 666 -o -perm 664 -o -perm 600 -o -perm 444 -o -perm 440 -o -perm 400 \) \
  -exec chmod 644 {} \;
 
-# mkdir -p $PKG$PREFIX/share/kbd/keymaps/i386/qwerty/
-# cp $CWD/tosa.map $PKG$PREFIX/share/kbd/keymaps/i386/qwerty/
-#gzip -9 $PKG$PREFIX/share/kbd/keymaps/i386/qwerty/tosa.map
 mkdir -p $PKG/etc/X11/xinit/
 cp $CWD/tosa.map $PKG/etc
 cp $CWD/tosa.xmodmap $PKG/etc/X11/xinit/.Xmodmap
+
+mkdir -p $PKG/etc/profile.d/
+cat <<EOF > $PKG/etc/profile.d/$PRGNAM.sh
+export HAVE_TOUCHSCREEN=1
+export HAVE_KEYBOARD=1
+export HAVE_KEYBOARD_PORTRAIT=0
+export HAVE_KEYBOARD_LANDSCAPE=1
+
+export DISPLAY_CAN_ROTATE=1
+export DISPLAY_ORIENTATION=270
+export DISPLAY_WIDTH_PIXELS=480
+export DISPLAY_WIDTH_MM=56
+export DISPLAY_HEIGHT_PIXELS=640
+export DISPLAY_HEIGHT_MM=74
+export DISPLAY_BPP=16
+export DISPLAY_DPI=220
+# export DISPLAY_DPI=150 # zubuntu put this...
+export DISPLAY_SUBPIXEL_ORDER=rgb
+EOF
+cat <<EOF > $PKG/etc/profile.d/$PRGNAM.csh
+setenv HAVE_TOUCHSCREEN 1
+setenv HAVE_KEYBOARD 1
+setenv HAVE_KEYBOARD_PORTRAIT 0
+setenv HAVE_KEYBOARD_LANDSCAPE 1
+
+setenv DISPLAY_CAN_ROTATE 1
+setenv DISPLAY_ORIENTATION 270
+setenv DISPLAY_WIDTH_PIXELS 480
+setenv DISPLAY_WIDTH_MM 56
+setenv DISPLAY_HEIGHT_PIXELS 640
+setenv DISPLAY_HEIGHT_MM 74
+setenv DISPLAY_BPP 16
+setenv DISPLAY_DPI 220
+# setenv DISPLAY_DPI 150 # zubuntu put this...
+setenv DISPLAY_SUBPIXEL_ORDER rgb
+EOF
+chmod +x $PKG/etc/profile.d/$PRGNAM.*
 
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
 cp $CWD/README* $PKG/usr/doc/$PRGNAM-$VERSION
