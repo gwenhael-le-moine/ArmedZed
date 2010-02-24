@@ -46,7 +46,7 @@ cat <<EOF > $PKG/install/doinst.sh
 
 grep -q "tosa\.map" /etc/rc.d/rc.local || cat <<EOF2 > /etc/rc.d/rc.local
 
-[ -e /etc/tosa.map ] && loadkeys /etc/tosa.map
+[ -e /etc/tosa.map ] && loadkeys -s /etc/tosa.map
 EOF2
 EOF
 cat <<EOF > $PKG/install/slack-desc
