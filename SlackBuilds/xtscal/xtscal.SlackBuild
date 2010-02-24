@@ -23,8 +23,6 @@ elif [ "$ARCH" = "arm" ]; then
   SLKCFLAGS="-O2"
 fi
 
-set -e
-
 rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
