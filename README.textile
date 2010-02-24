@@ -4,6 +4,18 @@ In here will be found SlackBuilds scripts to generate necessary packages, config
 
 -------------------------------------
 
+h2. Blockers :(
+
+h6. tosa-idiosyncrasies
+* /etc/X11/xinit/.Xmodmap either
+** doesn't load
+** is broken
+
+h6. tslib
+* ts_calibrate && ts_test work just fine in console but coordinates are "mirrored" in X
+
+-------------------------------------
+
 h3. Armedslack-current on a Tosa, How?
 
 * download and flash a kexecboot kernel
