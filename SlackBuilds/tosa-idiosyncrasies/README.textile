@@ -25,11 +25,8 @@
 |         |      | Down      |     |                 |
 
 - Find a keycode
+  - under X
         xbindkeys -k
+  - console
+        showkey
 
-- How to install
-        * cp tosa.xmodmap /etc/X11/Xmodmap
-        * echo "[ -f /etc/X11/Xmodmap ] && xmodmap /etc/X11/Xmodmap" >> /etc/X11/xinit/xinitrc
-
-# TODO
-- run as user
