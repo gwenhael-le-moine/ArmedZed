@@ -3,7 +3,7 @@
 PRGNAM=linux
 PKG_NAME=crossed-$PRGNAM
 VERSION=2.6.33
-BUILD=2
+BUILD=3
 PACKAGER=cyco
 ARCH=arm
 
