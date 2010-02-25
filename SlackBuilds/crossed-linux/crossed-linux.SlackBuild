@@ -3,7 +3,7 @@
 PRGNAM=linux
 PKG_NAME=crossed-$PRGNAM
 VERSION=2.6.33
-BUILD=1
+BUILD=2
 PACKAGER=cyco
 ARCH=arm
 
@@ -16,7 +16,9 @@ CROSS_COMPILE=$CWD/armv5te/bin/arm-angstrom-linux-gnueabi-
 
 SRC_URL="http://www.kernel.org/pub/linux/kernel/v2.6$(echo \"$VERSION\" | grep -q \"\-rc\" && echo \"/testing\" )"
 
-rm -fr $PKG $TMP/$PRGNAM-$VERSION
+rm -fr $PKG
+#rm -fr $TMP/$PRGNAM-$VERSION
+
 mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
 
 ( cd $TMP
