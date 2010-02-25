@@ -87,12 +87,9 @@ EOF
 
 config() {
   NEW="\$1"
-  OLD="\${NEW%.new}"
-  if [ ! -r \$OLD ]; then
-    mv \$NEW \$OLD
-  elif [ "\$(cat \$OLD | md5sum)" = "\$(cat \$NEW | md5sum)" ]; then
-    rm \$NEW
-  fi
+  OLD="\$\{NEW%.new\}"
+  [ ! -r \$OLD ] && mv \$NEW \$OLD
+  [ "\$(cat \$OLD | md5sum)" = "\$(cat \$NEW | md5sum)" ] && rm \$NEW
 }
 
 config /boot/image.nfo.new
