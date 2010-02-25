@@ -35,6 +35,17 @@ h3. Armedslack-current on a Tosa, How?
 
 --------------------------------------
 
+h4. Useful packages from the Outside World that build nice and quiet natively with just ARCH=arm
+
+* SBO
+** liblinebreak
+** FBReader
+
+* cycojesus (hey that's me :) )
+** subtle
+
+--------------------------------------
+
 h4. Todo:
 
 * detail / explain
