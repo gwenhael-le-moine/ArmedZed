@@ -119,17 +119,17 @@ EOF
 # leave one space after the ':'.
 
        |-----handy-ruler------------------------------------------------------|
-$PRGNAM: $PRGNAM (kernel)
-$PRGNAM: 
-$PRGNAM: Linux is a clone of the operating system Unix, written from scratch by
-$PRGNAM: Linus Torvalds with assistance from a loosely-knit team of hackers
-$PRGNAM: across the Net. It aims towards POSIX and Single UNIX Specification
-$PRGNAM: compliance.
-$PRGNAM: 
-$PRGNAM: It has all the features you would expect in a modern fully-fledged Unix
-$PRGNAM: 
-$PRGNAM: http://www.kernel.org
-$PRGNAM: 
+$PKG_NAME: $PKG_NAME (kernel)
+$PKG_NAME: 
+$PKG_NAME: Linux is a clone of the operating system Unix, written from scratch by
+$PKG_NAME: Linus Torvalds with assistance from a loosely-knit team of hackers
+$PKG_NAME: across the Net. It aims towards POSIX and Single UNIX Specification
+$PKG_NAME: compliance.
+$PKG_NAME: 
+$PKG_NAME: It has all the features you would expect in a modern fully-fledged Unix
+$PKG_NAME: 
+$PKG_NAME: http://www.kernel.org
+$PKG_NAME: 
 EOF
 
     makepkg -l y -c n $OUTPUT/$PKG_NAME-$VERSION-$ARCH-$BUILD$PACKAGER.txz
