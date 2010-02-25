@@ -59,7 +59,7 @@ make install DESTDIR=$PKG
 ( cd $PKG/etc/
 	mv init.d rc.d
 	mv rc.d/zaurusd rc.d/rc.zaurusd
-    sed -i 's|${exec_prefix}|/usr|g' rc.d/rc.zaurusd
+    sed -i 's|${exec_prefix}|/usr|g' rc.d/rc.zaurusd zaurusd/{config,scripts/zaurus-*}
 )
 
 mkdir -p $PKG/usr/doc/$PRGNAM
