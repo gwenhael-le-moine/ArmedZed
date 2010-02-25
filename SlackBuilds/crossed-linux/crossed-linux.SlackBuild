@@ -56,6 +56,10 @@ mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
     make ARCH=$ARCH modules_install INSTALL_MOD_PATH=$PKG
     rm $PKG/lib/modules/$VERSION-$BUILD$PACKAGER/{build,source}
 
+    ( cd $PKG/boot
+        ln -s $VERSION-$BUILD$PACKAGER/zImage
+    )
+    
     mkdir -p $PKG/etc/rc.d/
     cp $CWD/rc.modules.new $PKG/etc/rc.d/
 )
@@ -87,7 +91,7 @@ EOF
 
 config() {
   NEW="\$1"
-  OLD="\$\{NEW%.new\}"
+  OLD="\${NEW%.new}"
   [ ! -r \$OLD ] && mv \$NEW \$OLD
   [ "\$(cat \$OLD | md5sum)" = "\$(cat \$NEW | md5sum)" ] && rm \$NEW
 }
