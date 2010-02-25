@@ -1,9 +1,11 @@
 #!/bin/sh -x
 
+CLEAN_SRC="NO"
+
 PRGNAM=linux
 PKG_NAME=crossed-$PRGNAM
 VERSION=2.6.33
-BUILD=3
+BUILD=4
 PACKAGER=cyco
 ARCH=arm
 
@@ -17,7 +19,9 @@ CROSS_COMPILE=$CWD/armv5te/bin/arm-angstrom-linux-gnueabi-
 SRC_URL="http://www.kernel.org/pub/linux/kernel/v2.6$(echo \"$VERSION\" | grep -q \"\-rc\" && echo \"/testing\" )"
 
 rm -fr $PKG
-#rm -fr $TMP/$PRGNAM-$VERSION
+if [ $CLEAN_SRC != "NO" ] ; then
+    rm -fr $TMP/$PRGNAM-$VERSION
+fi
 
 mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
 
@@ -31,10 +35,12 @@ mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
 )
 
 ( cd $TMP/$PRGNAM-$VERSION
-    if [ -e $CWD/config-$VERSION ] ; then
-        cp $CWD/config-$VERSION .config
-    else
-        cp $CWD/config .config
+    if [ $CLEAN_SRC != "NO" ] ; then
+        if [ -e $CWD/config-$VERSION ] ; then
+            cp $CWD/config-$VERSION .config
+        else
+            [ -e $CWD/config ] && cp $CWD/config .config
+        fi
     fi
     sed -i "s|CONFIG_LOCALVERSION=\".*\"|CONFIG_LOCALVERSION=\"-$BUILD$PACKAGER\"|" .config
 
