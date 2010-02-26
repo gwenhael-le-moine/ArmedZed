@@ -1,11 +1,11 @@
 #!/bin/sh -x
 
-CLEAN_SRC="NO"
+CLEAN_SRC=NO
 
 PRGNAM=linux
 PKG_NAME=crossed-$PRGNAM
-VERSION=2.6.33
-BUILD=5
+VERSION=2.6.31.12
+BUILD=2
 PACKAGER=cyco
 ARCH=arm
 
@@ -56,31 +56,36 @@ mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
     make ARCH=$ARCH modules_install INSTALL_MOD_PATH=$PKG
     rm $PKG/lib/modules/$VERSION-$BUILD$PACKAGER/{build,source}
 
-    ( cd $PKG/boot
-        ln -s $VERSION-$BUILD$PACKAGER/zImage
-    )
-    
     mkdir -p $PKG/etc/rc.d/
-    cp $CWD/rc.modules.new $PKG/etc/rc.d/
+    cp $CWD/rc.modules.new $PKG/etc/rc.d/rc.modules-$VERSION-$BUILD$PACKAGER
+    ( cd $PKG/etc/rc.d/
+        ln -s rc.modules-$VERSION-$BUILD$PACKAGER rc.modules
+    )
 )
 
 ( cd $PKG/boot/
+    ln -s $VERSION-$BUILD$PACKAGER/zImage
+
     # in doubt about how kexecboot's mysterious ways
     # let's try all of what the internet has to say...
     # Kexecboot: http://projects.linuxtogo.org/projects/kexecboot/
     #        and http://www.angstrom-distribution.org/demo/kexecboot/
-    cat <<EOF > image.nfo.new
+    cat <<EOF > image.nfo-$VERSION-$BUILD$PACKAGER
 Armedslack-current, $PRGNAM-$VERSION-$BUILD$PACKAGER
 EOF
-    cat <<EOF > kernel-cmdline.new
+    cat <<EOF > kernel-cmdline-$VERSION-$BUILD$PACKAGER
 rootfstype=ext2 console=ttyS0,115200n8 console=tty1 noinitrd dyntick=enable
 EOF
-    cat <<EOF > boot.cfg.new
+    cat <<EOF > boot.cfg-$VERSION-$BUILD$PACKAGER
 LABEL=Armedslack-current, $PRGNAM-$VERSION-$BUILD$PACKAGER
 KERNEL=/boot/$VERSION-$BUILD$PACKAGER/zImage
 APPEND=console=ttyS0,115200n8 console=tty1 noinitrd dyntick=enable
 root=rootfstype=ext2
 EOF
+
+    ln -s image.nfo-$VERSION-$BUILD$PACKAGER image.nfo
+    ln -s kernel-cmdline-$VERSION-$BUILD$PACKAGER kernel-cmdline
+    ln -s boot.cfg-$VERSION-$BUILD$PACKAGER boot.cfg
 )
 
 ( cd $PKG
@@ -88,21 +93,6 @@ EOF
 
     cat <<EOF > $PKG/install/slack-desc
 #!/bin/sh
-
-config() {
-  NEW="\$1"
-  OLD="\${NEW%.new}"
-  [ ! -r \$OLD ] && mv \$NEW \$OLD
-  [ "\$(cat \$OLD | md5sum)" = "\$(cat \$NEW | md5sum)" ] && rm \$NEW
-}
-
-config /boot/image.nfo.new
-config /boot/kernel-cmdline.new
-config /boot/boot.cfg.new
-config /etc/rc.d/rc.modules.new
-
-cd /boot
-ln -sf $VERSION-$BUILD$PACKAGER/zImage zImage
 
 if [ -e /usr/src/$PRGNAM-$VERSION-$BUILD$PACKAGER ] ; then
     ( cd /lib/modules/$VERSION-$BUILD$PACKAGER/
