@@ -80,7 +80,7 @@ EOF
 LABEL=Armedslack-current, $PRGNAM-$VERSION-$BUILD$PACKAGER
 KERNEL=/boot/$VERSION-$BUILD$PACKAGER/zImage
 APPEND=console=ttyS0,115200n8 console=tty1 noinitrd dyntick=enable
-root=rootfstype=ext2
+root=rootfstype=ext3
 EOF
 
     ln -s image.nfo-$VERSION-$BUILD$PACKAGER image.nfo
