@@ -31,7 +31,9 @@ mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
             wget -c "$SRC_URL/$PRGNAM-$VERSION.tar.bz2"
         )
     fi
-    tar xf $CWD/$PRGNAM-$VERSION.tar.?z*
+    if [ $CLEAN_SRC != "NO" ] ; then
+        tar xf $CWD/$PRGNAM-$VERSION.tar.?z*
+    fi
 )
 
 ( cd $TMP/$PRGNAM-$VERSION
