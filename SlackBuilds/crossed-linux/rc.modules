@@ -919,8 +919,8 @@
 
 # fi # End enabling CPU scaling support
 
-# Touchscreen support
-/sbin/modprobe wm97xx-ts
+# Tosa touchscreen support
+# /sbin/modprobe wm97xx-ts
 
 # # We are done with these variables now:
 # unset NEWMODS RELEASE CPUFREQ SCALING_GOVERNOR SYSCPUFILE
