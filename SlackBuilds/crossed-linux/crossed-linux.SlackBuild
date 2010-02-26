@@ -48,8 +48,6 @@ mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
     [ "$1" == "menuconfig" ] && ARCH=$ARCH CROSS_COMPILE=$CROSS_COMPILE make menuconfig
     ARCH=$ARCH CROSS_COMPILE=$CROSS_COMPILE make
 
-    # mv $CWD/config $CWD/config.$(date +%F)
-    # cp .config $CWD/config-$VERSION.$(date +%F)
     cp .config System.map arch/arm/boot/zImage $PKG/boot/$VERSION-$BUILD$PACKAGER
     mv $PKG/boot/$VERSION-$BUILD$PACKAGER/{.,}config
 
@@ -57,7 +55,7 @@ mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
     rm $PKG/lib/modules/$VERSION-$BUILD$PACKAGER/{build,source}
 
     mkdir -p $PKG/etc/rc.d/
-    cp $CWD/rc.modules.new $PKG/etc/rc.d/rc.modules-$VERSION-$BUILD$PACKAGER
+    cp $CWD/rc.modules $PKG/etc/rc.d/rc.modules-$VERSION-$BUILD$PACKAGER
     ( cd $PKG/etc/rc.d/
         ln -s rc.modules-$VERSION-$BUILD$PACKAGER rc.modules
     )
