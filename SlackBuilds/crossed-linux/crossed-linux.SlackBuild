@@ -1,11 +1,11 @@
 #!/bin/sh -x
 
-CLEAN_SRC=YES
+CLEAN_SRC=NO
 
 PRGNAM=linux
 PKG_NAME=crossed-$PRGNAM
 VERSION=2.6.33
-BUILD=2
+BUILD=6
 PACKAGER=cyco
 ARCH=arm
 
@@ -40,7 +40,7 @@ mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
     if [ $CLEAN_SRC != "NO" ] ; then
         if [ -e $CWD/patches/$VERSION ] ; then
             for p in $CWD/patches/$VERSION/* ; do
-                patch -p1 -i $p
+                patch -p1 -i $p || exit 1 # if patching fail we want to know
             done
         fi
         if [ -e $CWD/config-$VERSION ] ; then
