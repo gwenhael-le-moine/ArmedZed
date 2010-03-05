@@ -32,9 +32,13 @@ find . \
 
 mkdir -p $PKG/etc/X11/xinit/
 cp $CWD/tosa.map $PKG/etc
+cp $CWD/xorg.conf $PKG/etc/X11/xorg.conf-tosa
 cp $CWD/tosa.xmodmap $PKG/etc/X11/xinit/Xmodmap
 ( cd $PKG/etc/X11/xinit/
     ln -s Xmodmap .Xmodmap
+)
+( cd $PKG/etc/X11/
+    ln -s xorg.conf-tosa xorg.conf
 )
 
 mkdir -p $PKG/etc/profile.d/
