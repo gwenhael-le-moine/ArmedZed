@@ -1,0 +1,33 @@
+// http://www.charvolant.org/~doug/xkb/html/node5.html
+partial default xkb_compatibility "tosa"  {
+
+   include "complete"
+
+      virtual_modifiers RControl;
+
+// Fn+Tab=Caps_Lock
+// but Tab!=Caps_Lock
+   interpret Tab {
+      useModMapMods=level1;
+   };
+// but Shift+Tab!=Caps_Lock
+   interpret ISO_Left_Tab {
+      useModMapMods=level1;
+   };
+
+// Control_R can be a virtual modifier in some cases
+   interpret Control_R {
+// FIXME: We need to emulate Control release, otherwise it does not work properly in apps that recognize Ctrl+Fx.
+// With or without this key, both left and right control issue Fx
+//	useModMapMods=level1;
+// Without this line, LControl cause Shift-key
+      virtualModifier= RControl;
+// Without this line, RControl stops to be recognized as Fx modifier
+      action= SetMods(modifiers=RControl);
+   };
+
+//    interpret F10 {
+//	useModMapMods=level1;
+//    };
+
+};

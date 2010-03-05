@@ -1,11 +1,11 @@
 #!/bin/sh -x
 
-CLEAN_SRC=NO
+CLEAN_SRC=YES
 
 PRGNAM=linux
 PKG_NAME=crossed-$PRGNAM
 VERSION=2.6.31.12
-BUILD=2
+BUILD=3
 PACKAGER=cyco
 ARCH=arm
 
@@ -31,19 +31,23 @@ mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
             wget -c "$SRC_URL/$PRGNAM-$VERSION.tar.bz2"
         )
     fi
-    if [ $CLEAN_SRC != "NO" ] ; then
-        tar xf $CWD/$PRGNAM-$VERSION.tar.?z*
-    fi
+    [ $CLEAN_SRC != "NO" ] && tar xf $CWD/$PRGNAM-$VERSION.tar.?z*
 )
 
 ( cd $TMP/$PRGNAM-$VERSION
-    if [ $CLEAN_SRC != "NO" ] ; then
+    if [ $CLEAN_SRC != "NO" ] && [ -e $CWD/patches/$VERSION ] ; then
+        for p in $CWD/patches/$VERSION/* ; do
+            patch -p1 -i $p || exit 1 # if patching fail we want to know
+        done
+    fi
+    if [ $CLEAN_SRC != "NO" ] || [ ! -e .config ] ; then
         if [ -e $CWD/config-$VERSION ] ; then
             cp $CWD/config-$VERSION .config
         else
             [ -e $CWD/config ] && cp $CWD/config .config
         fi
     fi
+
     sed -i "s|CONFIG_LOCALVERSION=\".*\"|CONFIG_LOCALVERSION=\"-$BUILD$PACKAGER\"|" .config
 
     ARCH=$ARCH CROSS_COMPILE=$CROSS_COMPILE make oldconfig

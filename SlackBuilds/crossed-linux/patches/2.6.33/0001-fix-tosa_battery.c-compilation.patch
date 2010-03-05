@@ -1,0 +1,21 @@
+diff -u linux-2.6.32/drivers/power/tosa_battery.c fix/drivers/power/tosa_battery.c
+--- linux-2.6.32/drivers/power/tosa_battery.c	2010-02-19 01:28:17.504925691 -0600
++++ fix/drivers/power/tosa_battery.c	2010-02-19 01:34:29.034947383 -0600
+@@ -61,7 +61,7 @@
+ 	mutex_lock(&bat_lock);
+ 	gpio_set_value(bat->gpio_bat, 1);
+ 	msleep(5);
+-	value = wm97xx_read_aux_adc(bat->psy.dev->parent->driver_data,
++	value = wm97xx_read_aux_adc(dev_get_drvdata(bat->psy.dev->parent),
+ 			bat->adc_bat);
+ 	gpio_set_value(bat->gpio_bat, 0);
+ 	mutex_unlock(&bat_lock);
+@@ -81,7 +81,7 @@
+ 	mutex_lock(&bat_lock);
+ 	gpio_set_value(bat->gpio_temp, 1);
+ 	msleep(5);
+-	value = wm97xx_read_aux_adc(bat->psy.dev->parent->driver_data,
++	value = wm97xx_read_aux_adc(dev_get_drvdata(bat->psy.dev->parent),
+ 			bat->adc_temp);
+ 	gpio_set_value(bat->gpio_temp, 0);
+ 	mutex_unlock(&bat_lock);

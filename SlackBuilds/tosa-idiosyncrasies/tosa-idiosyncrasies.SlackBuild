@@ -5,7 +5,7 @@
 PRGNAM=tosa-idiosyncrasies
 VERSION=${VERSION:-$(date +%F|tr -d '-')}
 ARCH=${ARCH:-noarch}
-BUILD=${BUILD:-2}
+BUILD=${BUILD:-3}
 TAG=${TAG:-cyco}
 
 CWD=$(pwd)
@@ -32,10 +32,16 @@ find . \
 
 mkdir -p $PKG/etc/X11/xinit/
 cp $CWD/tosa.map $PKG/etc
+cp $CWD/xorg.conf $PKG/etc/X11/xorg.conf-tosa
 cp $CWD/tosa.xmodmap $PKG/etc/X11/xinit/Xmodmap
 ( cd $PKG/etc/X11/xinit/
     ln -s Xmodmap .Xmodmap
 )
+( cd $PKG/etc/X11/
+    ln -s xorg.conf-tosa xorg.conf
+)
+
+cp -R $CWD/xkb $PKG/etc/X11/
 
 mkdir -p $PKG/etc/profile.d/
 cat <<EOF > $PKG/etc/profile.d/$PRGNAM.sh
@@ -85,6 +91,11 @@ grep -q "tosa\.map" /etc/rc.d/rc.local || cat <<EOF2 > /etc/rc.d/rc.local
 
 [ -e /etc/tosa.map ] && loadkeys -s /etc/tosa.map
 EOF2
+
+grep -q "evdev_tosa" /etc/skel/.xsession || cat <<EOF2 >> /etc/skel/.xsession
+
+setxkbmap -compat tosa -types tosa -keycodes evdev_tosa 'tosa(us)'
+EOF
 EOF
 cat <<EOF > $PKG/install/slack-desc
 $PRGNAM: $PRGNAM (idiosyncrasies of Tosa)
