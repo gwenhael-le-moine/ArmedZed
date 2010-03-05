@@ -41,6 +41,8 @@ cp $CWD/tosa.xmodmap $PKG/etc/X11/xinit/Xmodmap
     ln -s xorg.conf-tosa xorg.conf
 )
 
+cp -R $CWD/xkb $PKG/etc/X11/
+
 mkdir -p $PKG/etc/profile.d/
 cat <<EOF > $PKG/etc/profile.d/$PRGNAM.sh
 export HAVE_TOUCHSCREEN=1
@@ -89,6 +91,11 @@ grep -q "tosa\.map" /etc/rc.d/rc.local || cat <<EOF2 > /etc/rc.d/rc.local
 
 [ -e /etc/tosa.map ] && loadkeys -s /etc/tosa.map
 EOF2
+
+cat <<EOF2 >> /etc/skel/.xsession
+
+setxkbmap -compat tosa -types tosa -keycodes evdev_tosa 'tosa(us)'
+EOF
 EOF
 cat <<EOF > $PKG/install/slack-desc
 $PRGNAM: $PRGNAM (idiosyncrasies of Tosa)
