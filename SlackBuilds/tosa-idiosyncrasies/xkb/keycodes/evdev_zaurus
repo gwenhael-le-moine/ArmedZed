@@ -1,0 +1,17 @@
+// translation from evdev codes with specific key codes for Zaurus.
+
+partial default xkb_keycodes "evdev_zaurus" {
+    include "evdev(evdev)"
+	<Fn>   = 69;
+	<CROS> = 70;
+	<OKAR> = 95;
+	<OK>   = 71;
+	<CANC> = 72;
+	<CALE> = 67;
+	<ADDR> = 68;
+	<MAIL> = 76;
+	<HOMP> = 107;
+	<MNU>  = 96;
+	<ROL-> = 74;
+	<ROL+> = 73;
+};
