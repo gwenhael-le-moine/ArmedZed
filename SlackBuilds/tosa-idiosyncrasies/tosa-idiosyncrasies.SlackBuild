@@ -92,7 +92,7 @@ grep -q "tosa\.map" /etc/rc.d/rc.local || cat <<EOF2 > /etc/rc.d/rc.local
 [ -e /etc/tosa.map ] && loadkeys -s /etc/tosa.map
 EOF2
 
-cat <<EOF2 >> /etc/skel/.xsession
+grep -q "evdev_tosa" /etc/skel/.xsession || cat <<EOF2 >> /etc/skel/.xsession
 
 setxkbmap -compat tosa -types tosa -keycodes evdev_tosa 'tosa(us)'
 EOF
