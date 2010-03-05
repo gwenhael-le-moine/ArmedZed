@@ -21,6 +21,16 @@ h6. links
 
 -------------------------------------
 
+h3. Todo
+
+* Apparently tslib doesn't like chvt (switching from X to consle) and therefore exiting X hang the Z ( http://www.mail-archive.com/zaurus-devel@lists.linuxtogo.org/msg00087.html ).
+** try xf86-input-evtouch or xf86-input-plpevtch instead
+* ohci doesn't like to suspend
+** try a kernel without it
+** can we do without it ?
+
+-------------------------------------
+
 h3. Armedslack-current on a Tosa, How?
 
 * download and flash a kexecboot kernel
