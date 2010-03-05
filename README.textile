@@ -11,8 +11,11 @@ h6. tosa-idiosyncrasies
 ** doesn't load
 ** is broken
 
-h6. tslib
-* ts_calibrate && ts_test work just fine in console but coordinates are "mirrored" in X
+h6. tslib - FIXED, see tosa-idiosyncrasies' xorg.conf
+* -ts_calibrate && ts_test work just fine in console but coordinates are "mirrored" in X-
+
+h6. links
+* http://ftp.penguin.cz/pub/users/utx/zaurus/files/xserver-xorg/etc/X11/
 
 -------------------------------------
 
@@ -51,3 +54,5 @@ h4. Todo:
 * detail / explain
 ** OE
 *** toolchain
+** Wifi
+*** try and document (see http://www.omegamoon.com/blog/index.php?entry=entry090823-223248 )
