@@ -5,7 +5,7 @@
 PRGNAM=tosa-idiosyncrasies
 VERSION=${VERSION:-$(date +%F|tr -d '-')}
 ARCH=${ARCH:-noarch}
-BUILD=${BUILD:-2}
+BUILD=${BUILD:-3}
 TAG=${TAG:-cyco}
 
 CWD=$(pwd)
