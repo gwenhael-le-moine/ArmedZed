@@ -1,0 +1,3 @@
+#!/bin/sh
+
+setxkbmap -compat zaurus -types zaurus -keycodes evdev_zaurus 'zaurus(cz),zaurus(us)'
