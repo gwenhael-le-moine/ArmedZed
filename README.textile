@@ -7,12 +7,7 @@ In here will be found SlackBuilds scripts to generate necessary packages, config
 h2. Blockers :(
 
 h6. tosa-idiosyncrasies
-* /etc/X11/xinit/.Xmodmap either
-** doesn't load, or
-** is broken
-
-h6. tslib - FIXED, see tosa-idiosyncrasies' xorg.conf
-* -ts_calibrate && ts_test work just fine in console but coordinates are "mirrored" in X-
+* /etc/X11/xinit/.Xmodmap has no effect
 
 h6. suspend doesn't seem to work
 
@@ -23,11 +18,10 @@ h6. links
 
 h3. Todo
 
-* Apparently tslib doesn't like chvt (switching from X to consle) and therefore exiting X hang the Z ( http://www.mail-archive.com/zaurus-devel@lists.linuxtogo.org/msg00087.html ).
+* Apparently tslib doesn't like chvt (switching from X to consle) and therefore exiting X sometimes hang the Z ( http://www.mail-archive.com/zaurus-devel@lists.linuxtogo.org/msg00087.html ).
 ** try xf86-input-evtouch or xf86-input-plpevtch instead
 * ohci doesn't like to suspend
 ** try a kernel without it
-** can we do without it ?
 
 -------------------------------------
 
