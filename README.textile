@@ -76,7 +76,6 @@ arm-angstrom-linux-gnueabi-rmmod
 arm-angstrom-linux-gnueabi-size
 arm-angstrom-linux-gnueabi-strings
 arm-angstrom-linux-gnueabi-strip
-
 $ cd $LINUX_SOURCES
 $ cp $ARMEDZED/SlackBuilds/crossed-linux/config-2.6.31.12 .config
 $ ARCH=arm CROSS_COMPILE=$CWD/armv5te/bin/arm-angstrom-linux-gnueabi- make oldconfig
@@ -84,18 +83,18 @@ $ ARCH=arm CROSS_COMPILE=$CWD/armv5te/bin/arm-angstrom-linux-gnueabi- make
 $ ARCH=arm CROSS_COMPILE=$CWD/armv5te/bin/arm-angstrom-linux-gnueabi- make modules_install INSTALL_MOD_PATH=$ARMEDSLACK_ROOT
 $ cp arch/arm/boot/zImage $ARMEDSLACK_ROOT/boot
 $ cd $ARMEDSLACK_ROOT/boot
-cat <<EOF > image.nfo
+cat << EOF > image.nfo
 Armedslack-current
-EOF
-cat <<EOF > kernel-cmdline
+ EOF
+cat << EOF > kernel-cmdline
 rootfstype=ext3 console=ttyS0,115200n8 console=tty1 noinitrd dyntick=enable
-EOF
-cat <<EOF > boot.cfg
+ EOF
+cat << EOF > boot.cfg
 LABEL=Armedslack-current
 KERNEL=/boot/zImage
 APPEND=console=ttyS0,115200n8 console=tty1 noinitrd dyntick=enable
 root=rootfstype=ext3
-EOF
+ EOF
 * nano $ROOT/etc/fstab to use /dev/root as device for /
 * umount $ROOT
 * boot it in Tosa
