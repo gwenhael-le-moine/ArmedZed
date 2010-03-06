@@ -40,7 +40,62 @@ h3. Armedslack-current on a Tosa, How?
 * mount $CARD $ROOT
 * cd $ROOT
 * tar xf /armedslack-devtools/minirootfs/roots/slack-current-miniroot_*.tar.bz2
-* build and install SlackBuilds/crossed-linux
+* get a kernel > 2.6.31
+** on a Slackware system you can use cross-compiling-SlackBuilds/crossed-linux/ to cross-compile a kernel
+** otherwise you can make your own:
+$ ls $CWD/armv5te/bin
+arm-angstrom-linux-gnueabi-addr2line
+arm-angstrom-linux-gnueabi-ar
+arm-angstrom-linux-gnueabi-as
+arm-angstrom-linux-gnueabi-c++
+arm-angstrom-linux-gnueabi-c++filt
+arm-angstrom-linux-gnueabi-cpp
+arm-angstrom-linux-gnueabi-depmod-2.6
+arm-angstrom-linux-gnueabi-g++
+arm-angstrom-linux-gnueabi-g77
+arm-angstrom-linux-gnueabi-gcc
+arm-angstrom-linux-gnueabi-gcc-4.3.3
+arm-angstrom-linux-gnueabi-gccbug
+arm-angstrom-linux-gnueabi-gcov
+arm-angstrom-linux-gnueabi-generate-modprobe.conf
+arm-angstrom-linux-gnueabi-gfortran
+arm-angstrom-linux-gnueabi-gprof
+arm-angstrom-linux-gnueabi-insmod
+arm-angstrom-linux-gnueabi-insmod.static
+arm-angstrom-linux-gnueabi-klcc
+arm-angstrom-linux-gnueabi-ld
+arm-angstrom-linux-gnueabi-lsmod
+arm-angstrom-linux-gnueabi-modinfo
+arm-angstrom-linux-gnueabi-modprobe
+arm-angstrom-linux-gnueabi-nm
+arm-angstrom-linux-gnueabi-objcopy
+arm-angstrom-linux-gnueabi-objdump
+arm-angstrom-linux-gnueabi-ranlib
+arm-angstrom-linux-gnueabi-readelf
+arm-angstrom-linux-gnueabi-rmmod
+arm-angstrom-linux-gnueabi-size
+arm-angstrom-linux-gnueabi-strings
+arm-angstrom-linux-gnueabi-strip
+
+$ cd $LINUX_SOURCES
+$ cp $ARMEDZED/SlackBuilds/crossed-linux/config-2.6.31.12 .config
+$ ARCH=arm CROSS_COMPILE=$CWD/armv5te/bin/arm-angstrom-linux-gnueabi- make oldconfig
+$ ARCH=arm CROSS_COMPILE=$CWD/armv5te/bin/arm-angstrom-linux-gnueabi- make
+$ ARCH=arm CROSS_COMPILE=$CWD/armv5te/bin/arm-angstrom-linux-gnueabi- make modules_install INSTALL_MOD_PATH=$ARMEDSLACK_ROOT
+$ cp arch/arm/boot/zImage $ARMEDSLACK_ROOT/boot
+$ cd $ARMEDSLACK_ROOT/boot
+cat <<EOF > image.nfo
+Armedslack-current
+EOF
+cat <<EOF > kernel-cmdline
+rootfstype=ext3 console=ttyS0,115200n8 console=tty1 noinitrd dyntick=enable
+EOF
+cat <<EOF > boot.cfg
+LABEL=Armedslack-current
+KERNEL=/boot/zImage
+APPEND=console=ttyS0,115200n8 console=tty1 noinitrd dyntick=enable
+root=rootfstype=ext3
+EOF
 * nano $ROOT/etc/fstab to use /dev/root as device for /
 * umount $ROOT
 * boot it in Tosa
