@@ -95,7 +95,7 @@ EOF2
 grep -q "evdev_tosa" /etc/skel/.xsession || cat <<EOF2 >> /etc/skel/.xsession
 
 setxkbmap -compat tosa -types tosa -keycodes evdev_tosa 'tosa(us)'
-EOF
+EOF2
 EOF
 cat <<EOF > $PKG/install/slack-desc
 $PRGNAM: $PRGNAM (idiosyncrasies of Tosa)
