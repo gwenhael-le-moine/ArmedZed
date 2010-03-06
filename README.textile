@@ -83,13 +83,13 @@ $ ARCH=arm CROSS_COMPILE=$CWD/armv5te/bin/arm-angstrom-linux-gnueabi- make
 $ ARCH=arm CROSS_COMPILE=$CWD/armv5te/bin/arm-angstrom-linux-gnueabi- make modules_install INSTALL_MOD_PATH=$ARMEDSLACK_ROOT
 $ cp arch/arm/boot/zImage $ARMEDSLACK_ROOT/boot
 $ cd $ARMEDSLACK_ROOT/boot
-cat << EOF > image.nfo
+$ cat << EOF > image.nfo
 Armedslack-current
  EOF
-cat << EOF > kernel-cmdline
+$ cat << EOF > kernel-cmdline
 rootfstype=ext3 console=ttyS0,115200n8 console=tty1 noinitrd dyntick=enable
  EOF
-cat << EOF > boot.cfg
+$ cat << EOF > boot.cfg
 LABEL=Armedslack-current
 KERNEL=/boot/zImage
 APPEND=console=ttyS0,115200n8 console=tty1 noinitrd dyntick=enable
