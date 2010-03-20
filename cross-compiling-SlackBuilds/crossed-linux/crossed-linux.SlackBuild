@@ -1,11 +1,13 @@
 #!/bin/sh -x
 
-CLEAN_SRC=YES
+CLEAN_SRC=NO
 
 PRGNAM=linux
 PKG_NAME=crossed-$PRGNAM
-VERSION=2.6.31.12
-BUILD=3
+#VERSION=2.6.31.12
+VERSION=2.6.34-rc2
+#BUILD=3
+BUILD=1
 PACKAGER=cyco
 ARCH=arm
 
@@ -127,5 +129,5 @@ $PKG_NAME: http://www.kernel.org
 $PKG_NAME: 
 EOF
 
-    makepkg -l y -c n $OUTPUT/$PKG_NAME-$VERSION-$ARCH-$BUILD$PACKAGER.txz
+    makepkg -l y -c n $OUTPUT/$PKG_NAME-$(echo $VERSION | tr - _)-$ARCH-$BUILD$PACKAGER.txz
 )
