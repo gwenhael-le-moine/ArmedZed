@@ -31,6 +31,9 @@ find . \
  -exec chmod 644 {} \;
 
 mkdir -p $PKG/etc/X11/xinit/
+
+cp $CWD/fstab $PKG/etc
+
 cp $CWD/tosa.map $PKG/etc
 cp $CWD/xorg.conf $PKG/etc/X11/xorg.conf-tosa
 cp $CWD/tosa.xmodmap $PKG/etc/X11/xinit/Xmodmap
