@@ -7,25 +7,20 @@
 proc            /proc           proc    defaults        0       0
 #
 # tmpfs            /dev/shm         tmpfs       defaults         0   0
-#
-#
-# The Slackware ARM documents recommend creating a separate /boot partition
-# that uses the ext2 filesystem so that u-boot can load the kernels & initrd
-# from it:
-#/dev/sda1       /boot           ext2    errors=remount-ro 0       1
 
-# Swap:
+# Swap - CAREFUL, could kill a memory card
 #/dev/sda2       none            swap    sw                0       0
 
 # The rest is for the root filesystem:
-#/dev/root       /               ext3    noatime,errors=remount-ro 0   1
-/dev/mmcblk0p1   /               ext3    noatime,errors=remount-ro 0   1
+/dev/root       /               ext3    noatime,errors=remount-ro 0   1
+
+# booting from SD card
+#/dev/mmcblk0p1   /               ext3    noatime,errors=remount-ro 0   1
 
 #Flash - CAREFUL WITH THOSE !!!
 /dev/mtdblock0   /mnt/mtdblock0  jffs2   noauto,noatime,errors=remount-ro 0   0
 /dev/mtdblock1   /mnt/mtdblock1  jffs2   noauto,noatime,errors=remount-ro 0   0
 /dev/mtdblock2   /mnt/mtdblock2  jffs2   noauto,noatime,errors=remount-ro 0   0
-
 
 # Compact-Flash
 /dev/sda1        /mnt/cf         auto    noauto,noatime,errors=remount-ro 0   0
