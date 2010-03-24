@@ -31,7 +31,7 @@ find . \
  -exec chmod 644 {} \;
 
 mkdir -p $PKG/etc/X11/xinit/
-
+mkdir -p mkdir -p $PKG/mnt/{0,1,2}
 cp $CWD/fstab $PKG/etc
 
 cp $CWD/tosa.map $PKG/etc
