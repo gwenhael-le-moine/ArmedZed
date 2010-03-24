@@ -1,26 +1,18 @@
-#
-# Sample /etc/fstab
-#
-# This must be modified prior to use.
-#
 # <file system> <mount point>   <type>  <options>       <dump>  <pass>
-proc            /proc           proc    defaults        0       0
 #
-# tmpfs            /dev/shm         tmpfs       defaults         0   0
+# tmpfs          /dev/shm        tmpfs   defaults                  0   0
 
-# Swap - CAREFUL, could kill a memory card
-#/dev/sda2       none            swap    sw                0       0
+# Swap - CAREFUL, may not be a good idea on a memory card or flash...
+#/dev/sda2       none            swap    sw                        0   0
 
 # The rest is for the root filesystem:
 /dev/root       /               ext3    noatime,errors=remount-ro 0   1
+proc            /proc           proc    defaults                  0   0
 
-# booting from SD card
-#/dev/mmcblk0p1   /               ext3    noatime,errors=remount-ro 0   1
-
-#Flash - CAREFUL WITH THOSE !!!
-/dev/mtdblock0   /mnt/mtdblock0  jffs2   noauto,noatime,errors=remount-ro 0   0
-/dev/mtdblock1   /mnt/mtdblock1  jffs2   noauto,noatime,errors=remount-ro 0   0
-/dev/mtdblock2   /mnt/mtdblock2  jffs2   noauto,noatime,errors=remount-ro 0   0
+#Flash - we mount it read-only to avoid bricking things, CAREFUL
+/dev/mtdblock0   /mnt/mtdblock0  jffs2   noauto,noatime,ro        0   0
+/dev/mtdblock1   /mnt/mtdblock1  jffs2   noauto,noatime,ro        0   0
+/dev/mtdblock2   /mnt/mtdblock2  jffs2   noauto,noatime,ro        0   0
 
 # Compact-Flash
 /dev/sda1        /mnt/cf         auto    noauto,noatime,errors=remount-ro 0   0
