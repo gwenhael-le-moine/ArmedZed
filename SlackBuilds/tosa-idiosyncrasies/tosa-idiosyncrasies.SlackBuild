@@ -5,7 +5,7 @@
 PRGNAM=tosa-idiosyncrasies
 VERSION=${VERSION:-$(date +%F|tr -d '-')}
 ARCH=${ARCH:-noarch}
-BUILD=${BUILD:-3}
+BUILD=${BUILD:-4}
 TAG=${TAG:-cyco}
 
 CWD=$(pwd)
@@ -103,7 +103,7 @@ EOF
 cat <<EOF > $PKG/install/slack-desc
 $PRGNAM: $PRGNAM (idiosyncrasies of Tosa)
 $PRGNAM:
-$PRGNAM:
+$PRGNAM: Here are Tosa specific configuration files and tweaks.
 $PRGNAM:
 $PRGNAM:
 $PRGNAM:
