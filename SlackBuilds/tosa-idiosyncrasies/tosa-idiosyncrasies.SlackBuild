@@ -31,7 +31,7 @@ find . \
  -exec chmod 644 {} \;
 
 mkdir -p $PKG/etc/X11/xinit/
-mkdir -p mkdir -p $PKG/mnt/{0,1,2}
+mkdir -p mkdir -p $PKG/mnt/mtdblock{0,1,2}
 cp $CWD/fstab $PKG/etc
 
 cp $CWD/tosa.map $PKG/etc
@@ -83,8 +83,8 @@ setenv DISPLAY_SUBPIXEL_ORDER rgb
 EOF
 chmod +x $PKG/etc/profile.d/$PRGNAM.*
 
-mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
-cp $CWD/README* $PKG/usr/doc/$PRGNAM-$VERSION
+mkdir -p $PKG/usr/doc/$PRGNAM
+cp $CWD/README* $PKG/usr/doc/$PRGNAM
 
 mkdir -p $PKG/install
 cat <<EOF > $PKG/install/doinst.sh
