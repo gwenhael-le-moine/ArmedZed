@@ -28,8 +28,7 @@ h3. Todo
 h3. Armedslack-current on a Tosa, How?
 
 * download and flash a kexecboot kernel
-** http://projects.linuxtogo.org/projects/kexecboot/
-** http://www.angstrom-distribution.org/demo/kexecboot/
+** take the installkit-tosa.tar.gz from zaurus linux-kexecboot-2.6.2x http://projects.linuxtogo.org/frs/?group_id=55
 ** (you can also build one through OE if you have time and disk-space...)
 * mount $CARD $ROOT
 * cd $ROOT
