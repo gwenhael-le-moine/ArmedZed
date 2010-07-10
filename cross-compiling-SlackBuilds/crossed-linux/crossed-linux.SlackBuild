@@ -1,14 +1,11 @@
 #!/bin/sh -x
 
-#CLEAN_SRC=YES
-CLEAN_SRC=NO
+CLEAN_SRC=${CLEAN_SRC:-YES}
 
 PRGNAM=linux
 PKG_NAME=crossed-$PRGNAM
-VERSION=2.6.31.12
-#VERSION=2.6.34-rc2
-BUILD=4
-#BUILD=1
+VERSION=${VERSION:-2.6.31.14}
+BUILD=${BUILD:-1}
 PACKAGER=cyco
 ARCH=arm
 
@@ -73,16 +70,6 @@ mkdir -p $PKG/boot/$VERSION-$BUILD$PACKAGER
 ( cd $PKG/boot/
     ln -s $VERSION-$BUILD$PACKAGER/zImage
 
-    # in doubt about how kexecboot's mysterious ways
-    # let's try all of what the internet has to say...
-    # Kexecboot: http://projects.linuxtogo.org/projects/kexecboot/
-    #        and http://www.angstrom-distribution.org/demo/kexecboot/
-    cat <<EOF > image.nfo-$VERSION-$BUILD$PACKAGER
-Armedslack-current, $PRGNAM-$VERSION-$BUILD$PACKAGER
-EOF
-    cat <<EOF > kernel-cmdline-$VERSION-$BUILD$PACKAGER
-rootfstype=ext3 console=ttyS0,115200n8 console=tty1 noinitrd dyntick=enable
-EOF
     cat <<EOF > boot.cfg-$VERSION-$BUILD$PACKAGER
 LABEL=Armedslack-current, $PRGNAM-$VERSION-$BUILD$PACKAGER
 KERNEL=/boot/$VERSION-$BUILD$PACKAGER/zImage
@@ -90,8 +77,6 @@ APPEND=console=ttyS0,115200n8 console=tty1 noinitrd dyntick=enable
 root=rootfstype=ext3
 EOF
 
-    ln -s image.nfo-$VERSION-$BUILD$PACKAGER image.nfo
-    ln -s kernel-cmdline-$VERSION-$BUILD$PACKAGER kernel-cmdline
     ln -s boot.cfg-$VERSION-$BUILD$PACKAGER boot.cfg
 )
 
