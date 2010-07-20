@@ -1,6 +1,6 @@
 #!/bin/sh -x
 
-CLEAN_SRC=${CLEAN_SRC:-YES}
+CLEAN_SRC=${CLEAN_SRC:-NO}
 
 PRGNAM=linux
 PKG_NAME=crossed-$PRGNAM
