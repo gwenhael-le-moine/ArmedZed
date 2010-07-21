@@ -8,6 +8,7 @@ h2. Blockers :(
 
 h6. tosa-idiosyncrasies
 * /etc/X11/xinit/.Xmodmap has no effect
+* some interesting xkb things here: www.emacswiki.org/emacs/MaemoEmacs
 
 h6. suspend doesn't seem to work
 
