@@ -6,13 +6,11 @@ In here will be found SlackBuilds scripts to generate necessary packages, config
 
 h2. Blockers :(
 
-h6. tosa-idiosyncrasies
-* /etc/X11/xinit/.Xmodmap has no effect
-* some interesting xkb things here: www.emacswiki.org/emacs/MaemoEmacs
-
 h6. suspend doesn't seem to work
 
-h6. links
+-------------------------------------
+
+h3. links
 * http://ftp.penguin.cz/pub/users/utx/zaurus/files/xserver-xorg/etc/X11/
 
 -------------------------------------
