@@ -14,7 +14,7 @@ TMP=/tmp/$PACKAGER
 PKG=$TMP/pkg-$PRGNAM
 OUTPUT=/tmp
 
-CROSS_COMPILE=$CWD/armv5te/bin/arm-angstrom-linux-gnueabi-
+CROSS_COMPILE=/opt/cross-armv5te/bin/armv5te-slackware-linux-
 
 SRC_URL="http://www.kernel.org/pub/linux/kernel/v2.6$(echo \"$VERSION\" | grep -q \"\-rc\" && echo \"/testing\" )"
 
